@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Expedition POV Prompt Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f1f5f9; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .accent-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                JOSEPHS AI: ANIMAL EXPEDITION POV
+            </h1>
+            <p class="text-slate-400">Generator Prompt Sinematik Back-Mounted POV</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Side: Controls -->
+            <div class="glass p-6 rounded-2xl space-y-4">
+                <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <span>⚙️</span> Konfigurasi Video
+                </h2>
+                
+                <!-- Animal Selection -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">Pilih Hewan</label>
+                    <select id="animalSelect" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="Great White Shark">Hiu Putih Besar (Ocean)</option>
+                        <option value="Snow Leopard">Macan Tutul Salju (Mountain)</option>
+                        <option value="African Elephant">Gajah Afrika (Savanna)</option>
+                        <option value="Golden Eagle">Elang Emas (Aerial)</option>
+                        <option value="Black Caiman">Aligator Caiman (Amazon)</option>
+                        <option value="Grizzly Bear">Beruang Grizzly (Forest)</option>
+                        <option value="custom">-- Custom Hewan --</option>
+                    </select>
+                    <input id="customAnimal" type="text" placeholder="Masukkan nama hewan..." class="hidden mt-2 w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 outline-none">
+                </div>
+
+                <!-- Location Selection -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">Lokasi Global / Situs Sejarah</label>
+                    <select id="locationSelect" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="Ancient Great Wall of China">Tembok Besar China</option>
+                        <option value="The Sunken Ruins of Alexandria">Reruntuhan Alexandria (Bawah Air)</option>
+                        <option value="Chernobyl Exclusion Zone">Zona Eksklusi Chernobyl</option>
+                        <option value="The Lost City of Petra">Kota Hilang Petra, Yordania</option>
+                        <option value="Machu Picchu Peak">Puncak Machu Picchu</option>
+                        <option value="Mariana Trench Abyss">Palung Mariana</option>
+                        <option value="custom">-- Custom Lokasi --</option>
+                    </select>
+                    <input id="customLocation" type="text" placeholder="Masukkan lokasi..." class="hidden mt-2 w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 outline-none">
+                </div>
+
+                <!-- Discovery Type -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">Jenis Penemuan Misterius</label>
+                    <select id="discoverySelect" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="Ancient Uncharted Temple">Kuil Kuno Tak Terjamah</option>
+                        <option value="Abandoned Cold War Bunker">Bunker Perang Dingin Terbengkalai</option>
+                        <option value="Glowing Bioluminescent Cavern">Gua Bioluminesen Misterius</option>
+                        <option value="Forbidden Ritual Ground">Tempat Ritual Terlarang</option>
+                        <option value="Hidden High-Tech Laboratory">Laboratorium Teknologi Rahasia</option>
+                        <option value="custom">-- Custom Penemuan --</option>
+                    </select>
+                    <input id="customDiscovery" type="text" placeholder="Apa yang ditemukan?" class="hidden mt-2 w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 outline-none">
+                </div>
+
+                <button id="generateBtn" class="w-full accent-gradient hover:opacity-90 py-3 rounded-xl font-bold transition-all transform active:scale-95">
+                    GENERATE PROMPT 🚀
+                </button>
+            </div>
+
+            <!-- Right Side: Output -->
+            <div class="glass p-6 rounded-2xl flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">📋 Hasil Prompt</h2>
+                    <button id="copyBtn" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-md transition">Copy All</button>
+                </div>
+                <textarea id="outputArea" readonly class="flex-grow w-full bg-slate-900/50 border border-slate-700 rounded-xl p-4 text-sm font-mono text-slate-300 resize-none outline-none" placeholder="Klik Generate untuk melihat hasil..."></textarea>
+            </div>
+        </div>
+
+        <!-- Instructions Card -->
+        <div class="mt-8 glass p-6 rounded-2xl">
+            <h3 class="font-semibold mb-2">💡 Cara Penggunaan:</h3>
+            <ul class="text-sm text-slate-400 space-y-1 list-disc list-inside">
+                <li>Pilih elemen video atau masukkan teks kustom.</li>
+                <li>Gunakan prompt yang dihasilkan pada AI Video Generator (seperti Runway Gen-3, Luma, atau Sora).</li>
+                <li>Prompt sudah mencakup <b>Continuity Lock</b> dan <b>Visual Realism</b> sesuai standar JOSEPHS AI.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const selects = ['animal', 'location', 'discovery'];
+        
+        selects.forEach(id => {
+            const select = document.getElementById(id + 'Select');
+            const customInput = document.getElementById('custom' + (id.charAt(0).toUpperCase() + id.slice(1)));
+            
+            select.addEventListener('change', () => {
+                if(select.value === 'custom') {
+                    customInput.classList.remove('hidden');
+                } else {
+                    customInput.classList.add('hidden');
+                }
+            });
+        });
+
+        const generateBtn = document.getElementById('generateBtn');
+        const outputArea = document.getElementById('outputArea');
+
+        generateBtn.addEventListener('click', () => {
+            const animal = document.getElementById('animalSelect').value === 'custom' ? document.getElementById('customAnimal').value : document.getElementById('animalSelect').value;
+            const location = document.getElementById('locationSelect').value === 'custom' ? document.getElementById('customLocation').value : document.getElementById('locationSelect').value;
+            const discovery = document.getElementById('discoverySelect').value === 'custom' ? document.getElementById('customDiscovery').value : document.getElementById('discoverySelect').value;
+
+            if(!animal || !location || !discovery) {
+                alert("Mohon isi semua data!");
+                return;
+            }
+
+            const title = `${animal} POV: Exploring ${location} - ${discovery}`;
+            
+            const fullPrompt = `🎥 PROMPT B: CINEMATIC BACK-MOUNT POV VIDEO GENERATION
+Video Title: [${title.toUpperCase()}]
+
+The Animal: ${animal}
+The Location: ${location}
+The Main Discovery: ${discovery}
+
+🔒 CONTINUITY LOCK:
+Maintain identical lighting, weather, and environmental continuity across all scenes. No reinterpretation of earlier footage.
+
+🎬 SCENE STRUCTURE:
+
+Scene 1 – Camera Attachment:
+Close-up handheld POV of a researcher's hands securely tightening a small action camera harness onto the upper back of the ${animal}. Environment: A tactical staging base near ${location}. Sound of fabric tension and gear clicks. The moment of release as the ${animal} moves forward.
+
+Scene 2 – Environment Entry:
+Action cam POV mounted on the ${animal}'s back entering ${location}. Wide-angle lens with slight barrel distortion. Small portion of the camera housing visible at the bottom edge. Subtle vertical bounce from ${animal}'s movement.
+
+Scene 3 – Unusual Activity:
+POV from the back-mount as the ${animal} navigates towards something strange. Shadows stretch across the ground. Volumetric lighting and dust particles in the air. Natural body-driven motion.
+
+Scene 4 – Major Discovery:
+POV reveal of the ${discovery}. The camera captures high-detail textures of the abandoned site. Intense suspenseful atmosphere. Micro-vibrations consistent with a physically mounted rig.
+
+Scene 5 – Cliffhanger:
+Close exploration of the ${discovery} from the ${animal}'s back POV. Lens smudges and water droplets visible. Ends with a sudden movement and unexpected twist.
+
+🎥 VISUAL REALISM SPECS:
+- Wide-angle action cam lens (14mm).
+- Natural motion blur & micro-vibrations.
+- Fixed back-mount perspective (NO floating camera).
+- Harness straps slightly visible in frame.
+- Documentary-grade raw footage quality.`;
+
+            outputArea.value = fullPrompt;
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            outputArea.select();
+            document.execCommand('copy');
+            const btn = document.getElementById('copyBtn');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy All", 2000);
+        });
+    </script>
+</body>
+</html>
