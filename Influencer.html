@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Viral Content Factory – Luxury Influencer</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#020617;color:#e5e7eb;margin:0;padding:30px}
+.container{max-width:1200px;margin:auto}
+.card{background:#0f172a;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 10px 25px rgba(0,0,0,0.4)}
+select,button,input{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;font-size:14px}
+select,input{background:#1e293b;color:#fff}
+button{cursor:pointer}
+.generate{background:#2563eb;color:white}
+.copy{background:#10b981;color:white;margin-top:10px}
+.random{background:#f59e0b;color:white;margin-top:10px}
+textarea{width:100%;height:420px;margin-top:10px;background:#020617;color:#22c55e;border-radius:10px;padding:10px;border:none;font-family:monospace}
+h1{margin-bottom:10px}
+label{font-weight:bold;margin-top:12px;display:block}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>AI Viral Content Factory</h1>
+<p>Generate viral luxury influencer video prompts for Sora, Runway, Kling and other AI video tools.</p>
+
+<div class="card">
+
+<label>Top Clothing</label>
+<select id="top">
+<option value="a designer crop top">Designer Crop Top</option>
+<option value="a luxury silk blouse">Silk Blouse</option>
+<option value="a high fashion blazer">Fashion Blazer</option>
+<option value="a luxury streetwear hoodie">Luxury Hoodie</option>
+<option value="a glamorous evening top">Evening Top</option>
+<option value="a luxury fashion jacket">Fashion Jacket</option>
+</select>
+
+<label>Bottom Clothing</label>
+<select id="bottom">
+<option value="designer denim shorts">Designer Shorts</option>
+<option value="luxury leather pants">Leather Pants</option>
+<option value="high waist fashion jeans">Fashion Jeans</option>
+<option value="a stylish mini skirt">Mini Skirt</option>
+<option value="a luxury evening skirt">Evening Skirt</option>
+<option value="luxury tailored trousers">Tailored Pants</option>
+</select>
+
+<label>Luxury Brand</label>
+<select id="brand"></select>
+
+<label>Accessories</label>
+<select id="accessories">
+<option value="luxury sunglasses">Luxury Sunglasses</option>
+<option value="a designer handbag">Designer Handbag</option>
+<option value="a luxury diamond necklace">Diamond Necklace</option>
+<option value="a premium luxury watch">Luxury Watch</option>
+<option value="a luxury handbag and sunglasses">Handbag + Sunglasses</option>
+<option value="none">None</option>
+</select>
+
+<label>TikTok Viral Pose</label>
+<select id="pose">
+<option value="posing confidently for a selfie">Influencer Selfie</option>
+<option value="walking like a fashion runway model">Runway Walk</option>
+<option value="spinning to reveal the luxury scene">360 Reveal</option>
+<option value="leaning on a supercar">Supercar Lean</option>
+<option value="taking a mirror selfie">Mirror Selfie</option>
+<option value="showing off luxury shopping bags">Shopping Haul</option>
+</select>
+
+<label>Facial Expression</label>
+<select id="expression">
+<option value="smiling confidently">Confident Smile</option>
+<option value="laughing happily">Laughing</option>
+<option value="looking surprised">Surprised</option>
+<option value="posing stylishly">Stylish Pose</option>
+</select>
+
+<label>Luxury Travel Scene</label>
+<select id="location">
+<option value="Dubai Marina skyline with luxury yachts">Dubai Marina</option>
+<option value="Monaco harbor full of superyachts">Monaco Harbor</option>
+<option value="Miami beach luxury skyline">Miami Beach</option>
+<option value="Beverly Hills luxury shopping street">Beverly Hills</option>
+<option value="Paris luxury fashion district">Paris Fashion Street</option>
+<option value="private luxury island resort">Private Island</option>
+<option value="luxury rooftop in New York City">NYC Rooftop</option>
+</select>
+
+<label>Supercar / Luxury Object</label>
+<select id="car"></select>
+
+<label>Billionaire Lifestyle Element</label>
+<select id="lifestyle">
+<option value="a private jet parked nearby">Private Jet</option>
+<option value="a massive luxury superyacht">Mega Yacht</option>
+<option value="a luxury helicopter landing nearby">Luxury Helicopter</option>
+<option value="a collection of exotic supercars">Supercar Collection</option>
+<option value="luxury champagne bottles on a table">Champagne Party</option>
+</select>
+
+<label>Camera Movement</label>
+<select id="camera">
+<option value="a handheld influencer selfie camera">Influencer Selfie</option>
+<option value="a smooth cinematic tracking shot">Tracking Shot</option>
+<option value="a dramatic cinematic orbit camera">Orbit Camera</option>
+<option value="a luxury commercial style camera">Commercial Camera</option>
+</select>
+
+<label>Shot Composition</label>
+<select id="shot">
+<option value="close-up influencer selfie">Close-up</option>
+<option value="medium influencer vlog">Medium Shot</option>
+<option value="wide cinematic luxury shot">Wide Shot</option>
+</select>
+
+<label>Lighting</label>
+<select id="lighting">
+<option value="golden sunset lighting">Golden Hour</option>
+<option value="bright luxury commercial lighting">Commercial Lighting</option>
+<option value="soft city night lights">City Night</option>
+<option value="bright daytime luxury lighting">Daylight</option>
+</select>
+
+<label>Video Duration</label>
+<select id="duration">
+<option value="5">5 seconds</option>
+<option value="8">8 seconds</option>
+<option value="12">12 seconds</option>
+<option value="15">15 seconds</option>
+</select>
+
+<label>Visual Style</label>
+<select id="style">
+<option value="luxury influencer cinematic">Luxury Cinematic</option>
+<option value="fashion influencer vlog">Influencer Vlog</option>
+<option value="high end luxury commercial">Luxury Commercial</option>
+</select>
+
+<label>TikTok Viral Hook</label>
+<select id="hook"></select>
+
+<button class="generate" onclick="generateJSON()">Generate JSON Prompt</button>
+<button class="random" onclick="randomPrompt()">🎲 Random Viral Scene</button>
+
+</div>
+
+<div class="card">
+<label>Generated JSON</label>
+<textarea id="output"></textarea>
+<button class="copy" onclick="copyJSON()">Copy JSON</button>
+</div>
+
+</div>
+
+<script>
+
+const brands=[
+"Gucci","Louis Vuitton","Rolex","Cartier","Prada","Hermes","Balenciaga","Chanel","Dior","Versace",
+"Fendi","Givenchy","Bulgari","Tom Ford","Armani","Dolce & Gabbana","Saint Laurent","Burberry","Valentino","Alexander McQueen",
+"Moncler","Palm Angels","Off White","Loro Piana","Brunello Cucinelli","Bottega Veneta","Celine","Tiffany & Co","Piaget","Patek Philippe"
+]
+
+const brandSelect=document.getElementById("brand")
+brands.forEach(b=>{
+let opt=document.createElement("option")
+opt.value=b
+opt.textContent=b
+brandSelect.appendChild(opt)
+})
+
+const supercars=[
+"Lamborghini Aventador","Lamborghini Huracan","Ferrari LaFerrari","Ferrari SF90","Ferrari 488","Bugatti Chiron","Bugatti Mistral","Bugatti Veyron",
+"McLaren P1","McLaren 720S","McLaren Speedtail","Porsche 911 Turbo","Rolls Royce Phantom","Rolls Royce Cullinan","Bentley Continental GT",
+"Aston Martin Valkyrie","Koenigsegg Jesko","Koenigsegg Regera","Pagani Huayra","Pagani Zonda","Tesla Roadster","Mercedes AMG One",
+"BMW i8","Audi R8","Lexus LFA","Ford GT","Corvette C8","Nissan GT-R","Toyota Supra","Lotus Evija","Rimac Nevera","Hennessey Venom F5",
+"SSC Tuatara","Maserati MC20","Jaguar F-Type","Cadillac Celestiq","Lucid Air Sapphire","Polestar 6","Zenvo TSR-S"
+]
+
+const carSelect=document.getElementById("car")
+supercars.forEach(c=>{
+let opt=document.createElement("option")
+opt.value=c
+opt.textContent=c
+carSelect.appendChild(opt)
+})
+
+const hooks=[
+"POV you just entered billionaire lifestyle",
+"Wait until you see this supercar",
+"This is what luxury life looks like",
+"Dubai lifestyle hits different",
+"Only 1% of people experience this",
+"Living the dream lifestyle",
+"Which car would you choose?",
+"Day in the life of a luxury influencer",
+"You won't believe this view",
+"Welcome to billionaire lifestyle"
+]
+
+const hookSelect=document.getElementById("hook")
+hooks.forEach(h=>{
+let opt=document.createElement("option")
+opt.value=h
+opt.textContent=h
+hookSelect.appendChild(opt)
+})
+
+function generateJSON(){
+
+const top=document.getElementById('top').value
+const bottom=document.getElementById('bottom').value
+const brand=document.getElementById('brand').value
+const accessories=document.getElementById('accessories').value
+const pose=document.getElementById('pose').value
+const expression=document.getElementById('expression').value
+const location=document.getElementById('location').value
+const car=document.getElementById('car').value
+const lifestyle=document.getElementById('lifestyle').value
+const camera=document.getElementById('camera').value
+const shot=document.getElementById('shot').value
+const lighting=document.getElementById('lighting').value
+const duration=document.getElementById('duration').value
+const style=document.getElementById('style').value
+const hook=document.getElementById('hook').value
+
+const json={
+metadata:{
+ title:"AI Viral Luxury Influencer Scene",
+ generator:"AI Viral Content Factory"
+},
+
+viral_hook:hook,
+
+video_analysis:{
+subject:`A luxury influencer ${expression}, ${pose}, wearing ${top} and ${bottom}, with ${brand} and ${accessories}`,
+setting:location,
+background_elements:`${car} with ${lifestyle}`,
+camera_movement:camera
+},
+
+ai_generation_prompt:{
+text_to_video_prompt:`${hook}. Cinematic ${shot} video of a luxury influencer ${expression} ${pose}, wearing ${top} and ${bottom}, showing ${brand} and ${accessories}. Scene set in ${location}. Behind her there is ${car} and ${lifestyle}. Camera performs ${camera}. Lighting ${lighting}. Ultra realistic billionaire lifestyle atmosphere, viral TikTok luxury aesthetic. Visual style ${style}.`,
+
+negative_prompt:"blurry, distorted cars, unrealistic vehicles, cartoon style, anime style, low resolution",
+
+technical_specs:{
+aspect_ratio:"9:16",
+resolution:"4K",
+frame_rate:"30fps",
+duration_seconds:Number(duration),
+style:style
+}
+}
+}
+
+const formatted=JSON.stringify(json,null,2)
+document.getElementById('output').value=formatted
+}
+
+function randomPrompt(){
+const selects=document.querySelectorAll('select')
+selects.forEach(select=>{
+select.selectedIndex=Math.floor(Math.random()*select.options.length)
+})
+
+generateJSON()
+}
+
+function copyJSON(){
+const text=document.getElementById('output')
+text.select()
+document.execCommand('copy')
+alert('JSON copied')
+}
+
+</script>
+
+</body>
+</html>
