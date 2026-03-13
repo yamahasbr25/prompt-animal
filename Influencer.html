@@ -91,14 +91,7 @@ label{font-weight:bold;margin-top:12px;display:block}
 <label>Supercar / Luxury Object</label>
 <select id="car"></select>
 
-<label>Billionaire Lifestyle Element</label>
-<select id="lifestyle">
-<option value="a private jet parked nearby">Private Jet</option>
-<option value="a massive luxury superyacht">Mega Yacht</option>
-<option value="a luxury helicopter landing nearby">Luxury Helicopter</option>
-<option value="a collection of exotic supercars">Supercar Collection</option>
-<option value="luxury champagne bottles on a table">Champagne Party</option>
-</select>
+
 
 <label>Camera Movement</label>
 <select id="camera">
@@ -217,7 +210,7 @@ const pose=document.getElementById('pose').value
 const expression=document.getElementById('expression').value
 const location=document.getElementById('location').value
 const car=document.getElementById('car').value
-const lifestyle=document.getElementById('lifestyle').value
+
 const camera=document.getElementById('camera').value
 const shot=document.getElementById('shot').value
 const lighting=document.getElementById('lighting').value
@@ -236,12 +229,12 @@ viral_hook:hook,
 video_analysis:{
 subject:`A luxury influencer ${expression}, ${pose}, wearing ${top} and ${bottom}, with ${brand} and ${accessories}`,
 setting:location,
-background_elements:`${car} with ${lifestyle}`,
+background_elements:`${car} featured prominently in the scene`,
 camera_movement:camera
 },
 
 ai_generation_prompt:{
-text_to_video_prompt:`${hook}. Cinematic ${shot} video of a luxury influencer ${expression} ${pose}, wearing ${top} and ${bottom}, showing ${brand} and ${accessories}. Scene set in ${location}. Behind her there is ${car} and ${lifestyle}. Camera performs ${camera}. Lighting ${lighting}. Ultra realistic billionaire lifestyle atmosphere, viral TikTok luxury aesthetic. Visual style ${style}.`,
+text_to_video_prompt:`${hook}. Cinematic ${shot} video of a luxury influencer ${expression} ${pose}, wearing ${top} and ${bottom}, showing ${brand} and ${accessories}. Scene set in ${location}. Behind her there is a ${car} featured prominently in the background. Camera performs ${camera}. Lighting ${lighting}. Ultra realistic billionaire lifestyle atmosphere, viral TikTok luxury aesthetic. Visual style ${style}.`,
 
 negative_prompt:"blurry, distorted cars, unrealistic vehicles, cartoon style, anime style, low resolution",
 
