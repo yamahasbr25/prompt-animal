@@ -3,83 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ocean AI Generator V2</title>
+<title>Ocean AI Generator V3</title>
 
 <style>
-
-body{
-font-family:Arial;
-background:#020617;
-color:#e5e7eb;
-margin:0;
-padding:30px;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-}
-
-.card{
-background:#0f172a;
-border-radius:14px;
-padding:24px;
-margin-bottom:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
-}
-
-select,button{
-width:100%;
-padding:10px;
-margin-top:10px;
-border-radius:8px;
-border:none;
-font-size:14px;
-}
-
-select{
-background:#1e293b;
-color:white;
-}
-
-button{
-cursor:pointer;
-}
-
-.generate{
-background:#2563eb;
-color:white;
-}
-
-.random{
-background:#f59e0b;
-color:white;
-}
-
-.copy{
-background:#10b981;
-color:white;
-margin-top:10px;
-}
-
-textarea{
-width:100%;
-height:420px;
-margin-top:10px;
-background:#020617;
-color:#22c55e;
-border-radius:10px;
-padding:10px;
-border:none;
-font-family:monospace;
-}
-
-label{
-font-weight:bold;
-margin-top:12px;
-display:block;
-}
-
+body{font-family:Arial;background:#020617;color:#e5e7eb;margin:0;padding:30px}
+.container{max-width:1200px;margin:auto}
+.card{background:#0f172a;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 10px 25px rgba(0,0,0,0.4)}
+select,input,button{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;font-size:14px}
+select,input{background:#1e293b;color:white}
+button{cursor:pointer}
+.generate{background:#2563eb;color:white}
+.random{background:#f59e0b;color:white}
+.copy{background:#10b981;color:white;margin-top:10px}
+textarea{width:100%;height:420px;margin-top:10px;background:#020617;color:#22c55e;border-radius:10px;padding:10px;border:none;font-family:monospace}
+label{font-weight:bold;margin-top:12px;display:block}
 </style>
 </head>
 
@@ -87,27 +24,26 @@ display:block;
 
 <div class="container">
 
-<h1>Ocean AI Generator V2</h1>
-<p>Create viral cinematic ocean wildlife encounters.</p>
+<h1>🌊 Ocean AI Generator V3</h1>
+<p>Create viral giant ocean creature encounters.</p>
 
 <div class="card">
 
 <label>Diver Outfit</label>
 <select id="outfit">
-<option value="a professional black scuba diving suit with oxygen tank and fins">Full Scuba Suit</option>
-<option value="a tropical diving rash guard with diving shorts">Tropical Diving Outfit</option>
-<option value="a lightweight scuba exploration suit">Exploration Suit</option>
-<option value="a deep sea professional diving suit">Deep Sea Suit</option>
+<option value="a professional black scuba diving suit with oxygen tank and fins">Professional Scuba Suit</option>
+<option value="a tropical diving rash guard and diving shorts">Tropical Diving Outfit</option>
+<option value="a deep sea exploration suit">Deep Sea Suit</option>
 <option value="a minimalist freediving suit">Freediving Suit</option>
 </select>
 
 <label>Diver Action</label>
 <select id="action">
-<option value="slowly swimming through the water">Swimming Slowly</option>
-<option value="exploring a coral reef canyon">Exploring Reef</option>
-<option value="filming marine wildlife with an underwater camera">Filming Wildlife</option>
+<option value="slowly swimming through the ocean">Swimming</option>
+<option value="exploring an underwater canyon">Exploring Canyon</option>
+<option value="filming marine wildlife with a camera">Filming Wildlife</option>
 <option value="floating calmly in open ocean">Floating</option>
-<option value="swimming toward a massive creature">Approaching Creature</option>
+<option value="approaching a mysterious creature">Approaching Creature</option>
 </select>
 
 <label>Ocean Location</label>
@@ -115,7 +51,7 @@ display:block;
 <option value="a vibrant tropical coral reef">Coral Reef</option>
 <option value="the deep blue open ocean">Open Ocean</option>
 <option value="a mysterious deep sea trench">Deep Sea Trench</option>
-<option value="a massive underwater canyon">Underwater Canyon</option>
+<option value="a giant underwater canyon">Underwater Canyon</option>
 <option value="a crystal clear tropical lagoon">Blue Lagoon</option>
 </select>
 
@@ -130,13 +66,24 @@ display:block;
 <label>Marine Creature</label>
 <select id="animal"></select>
 
+<label>Creature Size (meters)</label>
+<input type="range" id="size" min="20" max="300" value="80" oninput="sizeValue.innerText=this.value">
+<p>Size: <span id="sizeValue">80</span> meters</p>
+
 <label>Creature Behavior</label>
 <select id="behavior">
-<option value="slowly swimming near the diver">Swimming Nearby</option>
+<option value="slowly emerging from the darkness">Emerging</option>
 <option value="circling the diver curiously">Circling</option>
 <option value="gliding past the diver">Passing</option>
-<option value="emerging from the darkness">Emerging</option>
 <option value="approaching the diver slowly">Approaching</option>
+<option value="swimming powerfully through the water">Powerful Swim</option>
+</select>
+
+<label>Predator Encounter Mode</label>
+<select id="predator">
+<option value="a calm wildlife encounter">Calm Encounter</option>
+<option value="a tense predator encounter">Predator Encounter</option>
+<option value="an intense dramatic wildlife moment">Dramatic Scene</option>
 </select>
 
 <label>Cinematic Camera</label>
@@ -144,22 +91,8 @@ display:block;
 <option value="a GoPro POV underwater camera">GoPro POV</option>
 <option value="an ultra wide cinematic underwater lens">Ultra Wide</option>
 <option value="a cinematic IMAX underwater camera">IMAX</option>
-<option value="a macro wildlife underwater lens">Macro Wildlife</option>
-<option value="a smooth underwater drone tracking shot">Underwater Drone</option>
-</select>
-
-<label>Shot Composition</label>
-<select id="shot">
-<option value="a dramatic wide cinematic shot">Wide Cinematic</option>
-<option value="a medium underwater wildlife shot">Medium Shot</option>
-<option value="an extreme scale cinematic shot">Extreme Scale Shot</option>
-</select>
-
-<label>Lighting</label>
-<select id="lighting">
-<option value="dramatic sunlight rays piercing through the water">Sun Rays</option>
-<option value="deep mysterious ocean lighting">Deep Sea Light</option>
-<option value="bright tropical underwater lighting">Tropical Light</option>
+<option value="a smooth underwater drone tracking shot">Drone Shot</option>
+<option value="a dramatic orbit camera around the diver">Orbit Camera</option>
 </select>
 
 <label>Environment Effects</label>
@@ -167,7 +100,14 @@ display:block;
 <option value="massive schools of tropical fish surrounding the diver">Fish Swarm</option>
 <option value="floating bubbles and plankton particles">Bubbles</option>
 <option value="glowing bioluminescent particles">Bioluminescence</option>
-<option value="none">None</option>
+<option value="underwater sand clouds and particles">Ocean Particles</option>
+</select>
+
+<label>Lighting</label>
+<select id="lighting">
+<option value="dramatic sunlight rays piercing the water">Sun Rays</option>
+<option value="deep mysterious ocean lighting">Deep Sea Light</option>
+<option value="bright tropical underwater lighting">Tropical Light</option>
 </select>
 
 <label>Video Duration</label>
@@ -194,9 +134,7 @@ display:block;
 <div class="card">
 
 <label>Generated JSON</label>
-
 <textarea id="output"></textarea>
-
 <button class="copy" onclick="copyJSON()">Copy JSON</button>
 
 </div>
@@ -206,25 +144,22 @@ display:block;
 <script>
 
 const animalDB={
-
-"Blue Whale":"a gigantic blue whale larger than a submarine",
-"Whale Shark":"an enormous whale shark with massive spotted body",
-"Giant Squid":"a colossal giant squid with extremely long tentacles",
-"Great White Shark":"a gigantic great white shark with massive jaws",
-"Megalodon":"a prehistoric megalodon shark of terrifying size",
-"Manta Ray":"a giant manta ray with enormous wingspan",
-"Colossal Squid":"a colossal squid emerging from darkness",
-"Orca":"a massive orca predator",
-"Giant Octopus":"a huge octopus with massive tentacles",
-"Titan Jellyfish":"a gigantic glowing jellyfish",
-"Leviathan Whale":"an ancient leviathan whale of enormous size"
-
+"Blue Whale":"a gigantic blue whale",
+"Whale Shark":"a giant whale shark with spotted body",
+"Giant Squid":"a colossal squid with long tentacles",
+"Great White Shark":"a massive great white shark",
+"Megalodon":"a prehistoric megalodon shark",
+"Manta Ray":"a huge manta ray",
+"Colossal Squid":"a terrifying colossal squid",
+"Giant Octopus":"a giant octopus with massive tentacles",
+"Leviathan Whale":"an ancient leviathan whale",
+"Titan Jellyfish":"a gigantic glowing jellyfish"
 }
 
 const animalSelect=document.getElementById("animal")
 
 Object.keys(animalDB).forEach(name=>{
-const opt=document.createElement("option")
+let opt=document.createElement("option")
 opt.value=name
 opt.textContent=name
 animalSelect.appendChild(opt)
@@ -238,33 +173,34 @@ const location=document.getElementById('location').value
 const water=document.getElementById('water').value
 const animal=document.getElementById('animal').value
 const animalDesc=animalDB[animal]
+const size=document.getElementById('size').value
 const behavior=document.getElementById('behavior').value
+const predator=document.getElementById('predator').value
 const camera=document.getElementById('camera').value
-const shot=document.getElementById('shot').value
-const lighting=document.getElementById('lighting').value
 const effects=document.getElementById('effects').value
+const lighting=document.getElementById('lighting').value
 const duration=document.getElementById('duration').value
 const style=document.getElementById('style').value
 
 const json={
 
 metadata:{
-title:"Ocean AI Viral Wildlife Scene",
-generator:"Ocean AI Generator V2"
+title:"Ocean AI Viral Scene",
+generator:"Ocean AI Generator V3"
 },
 
 video_analysis:{
-subject:`A diver wearing ${outfit} ${action}`,
+subject:`A young female ocean explorer wearing ${outfit}`,
 setting:`${location} with ${water}`,
-background_elements:`A massive ${animal} described as ${animalDesc} ${behavior}`,
+creature:`A ${size} meter ${animal}`,
 camera:camera
 },
 
 ai_generation_prompt:{
 
-text_to_video_prompt:`Ultra realistic cinematic ${shot} underwater video. A diver wearing ${outfit} is ${action} in ${location}. The water is ${water}. Suddenly a massive ${animal} appears. The creature is described as ${animalDesc} and looks gigantic compared to the diver, creating a dramatic scale difference. The creature is ${behavior}. The camera uses ${camera}. Lighting condition: ${lighting}. Environmental effects include ${effects}. The creature appears enormous, towering over the diver in size, creating a viral cinematic wildlife encounter. Highly detailed photorealistic marine life, volumetric sunlight rays, underwater caustics, ultra realistic ocean physics. Style: ${style}.`,
+text_to_video_prompt:`Ultra realistic cinematic underwater video of a young female ocean explorer with long hair flowing naturally underwater. She is wearing ${outfit} and is ${action} in ${location}. The water is ${water}. Suddenly a gigantic ${animal} appears. The creature is described as ${animalDesc} and is approximately ${size} meters long, making it tower over the diver in a dramatic scale comparison. The creature is ${behavior}. This moment feels like ${predator}. The camera uses ${camera}. Environmental effects include ${effects}. Lighting condition is ${lighting}. Massive cinematic scale difference between the diver and creature creates a viral wildlife moment. Highly detailed marine life, volumetric sunlight rays, underwater caustics, photorealistic ocean physics. Style: ${style}. Optimized for vertical viral video.`,
 
-negative_prompt:"blurry, low quality, cartoon, anime, unrealistic animals",
+negative_prompt:"blurry, low quality, cartoon, unrealistic animals",
 
 technical_specs:{
 aspect_ratio:"9:16",
@@ -282,27 +218,18 @@ document.getElementById("output").value=JSON.stringify(json,null,2)
 }
 
 function randomPrompt(){
-
 const selects=document.querySelectorAll("select")
-
-selects.forEach(select=>{
-select.selectedIndex=Math.floor(Math.random()*select.options.length)
+selects.forEach(s=>{
+s.selectedIndex=Math.floor(Math.random()*s.options.length)
 })
-
 generateJSON()
-
 }
 
 function copyJSON(){
-
 const text=document.getElementById("output")
-
 text.select()
-
 document.execCommand("copy")
-
 alert("JSON copied")
-
 }
 
 </script>
